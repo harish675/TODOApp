@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <script src="https://kit.fontawesome.com/0eff3d4dd2.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        
+        <div id="main-container">
+              <h1>TODO App</h1>
+              <hr>
+              <form action="/create-tasks" method="POST">
+                <div id="task-container" class="left-Margin">
+                   <label for="task">DESCRIPTION</label>
+                   <br>
+                   <input type="textarea" name="task" id="task" placeholder="What do you need to do?"  required>
+                </div>
+                <hr>
+
+                <div id="category-container">
+                    <div class="left-Margin" >
+
+                        <label for="category">CATEGORY</label>
+                        <br>
+                        <select name="category" id="category"  required>
+                            <option value="">Choose a category</option>
+                            <option value="WORK">Work</option>
+                            <option value="SCHOOL">School</option>
+                            <option value="PERSONAL">Personal</option>
+                            <option value="CLEANING">Cleaning</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+
+                    </div>
+
+                    <div class="left-Margin">
+                        <label for="date" >DUE DATE</label>
+                        <br>
+                        <input type="date" name="date" id="date" required>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="left-Margin" id="btn">        
+                      <button type="submit" class="bt-black" >
+                        <i class="fa-solid fa-plus"></i>
+                        <span>
+                            ADD TASK
+                        </span>
+                        </button>
+                        <button class="bt-red" id="deleteSelected">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span>
+                                DELETE TASKS
+                            </span>
+                        </button>
+                       
+                </div>
+
+               
+                
+              </form>
+              <div>
+            
+        
+              </div>
+              <hr>
+              <!-- displaying todo list -->
+              <div id="tasks-container">
+                <ul id="todo">
+                    <% for(let i of task_List){ %>
+
+                        <li>
+                            <input type="checkbox" name="deleteCheckBox" value="<%= i.id %>">
+                            <div class="task-details">
+                                <p><%= i.task %></p>
+                                <p>
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                   <span>
+                                   <%= i.date %>
+                                   </span>
+                                </p>
+                            </div>
+                            <div class="category-details">
+                                <p id="select-colors"><%= i.category %></p>
+                            </div>
+                            
+                        </li>
+                        <hr>
+                    <%}%>
+                </ul>
+              </div>
+
+        </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/home.js"></script>    
+    </body>
+</html>
